@@ -14,8 +14,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function Dashboard() {
   const { width } = useWindowDimensions();
   const [binStatus, setBinStatus] = useState({
-    bio: "empty", // default
-    recyclable: "empty",
+    bio: "empty",
+    nonbio: "empty",
   });
 
   useEffect(() => {
@@ -43,7 +43,6 @@ export default function Dashboard() {
         console.log("Backend data:", data);
 
         if (response.ok) {
-          // Select the latest bin status (based on updated_at)
           const latestBinStatus = data.reduce((latest, current) => {
             return new Date(current.updated_at) > new Date(latest.updated_at)
               ? current
@@ -55,8 +54,7 @@ export default function Dashboard() {
               latestBinStatus.bio_status.toLowerCase() === "full"
                 ? "full"
                 : "empty",
-            recyclable:
-              latestBinStatus.recyclable_status === "full" ? "full" : "empty",
+            nonbio: latestBinStatus.nonbio_status === "full" ? "full" : "empty",
           });
         } else {
           console.log("Failed to fetch bin status:", data);
@@ -87,9 +85,9 @@ export default function Dashboard() {
           <Entypo name="trash" size={170} color="#4B5563" />
           <Text style={styles.cardtxt}>Biodegradable</Text>
         </View>
-        <View style={styles.recyclable}>
+        <View style={styles.nonbio}>
           <Text style={styles.statusText}>
-            {binStatus.recyclable === "full" ? "Full" : "Empty"}
+            {binStatus.nonbio === "full" ? "Full" : "Empty"}
           </Text>
           <Entypo name="trash" size={170} color="#4B5563" />
           <Text style={styles.cardtxt}>Non-Biodegradable</Text>
@@ -133,7 +131,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     margin: 10,
   },
-  recyclable: {
+  nonbio: {
     height: 270,
     width: 245,
     justifyContent: "center",
@@ -156,6 +154,6 @@ const styles = StyleSheet.create({
     left: 10,
     fontSize: 17,
     fontWeight: "bold",
-    color: "#D32F2F", // red by default
+    color: "#D32F2F",
   },
 });
