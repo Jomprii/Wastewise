@@ -3,7 +3,7 @@
 
 ## **Description**
 
-WasteWise is an IoT‑powered automatic waste‑sorting garbage bin system. This mobile app is designed for maintenance staff to monitor bin levels, enabling efficient waste collection. Each bin uses two IR proximity sensors; when they are triggered for more than 5 seconds, the bin status is set to Full. The app refreshes the status every 3 seconds to display the current state (Empty or Full).
+WasteWise is an IoT‑powered automatic waste‑sorting garbage bin system. This mobile app is designed for maintenance staff to monitor bin levels, enabling efficient waste collection. Each bin uses IR proximity sensor; when they are triggered for more than 5 seconds, the bin status is set to Full. The app refreshes the status every 3 seconds to display the current state (Empty or Full).
 
 ## **Features**
 
